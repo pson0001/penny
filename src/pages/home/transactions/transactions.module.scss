@@ -1,0 +1,36 @@
+.transactionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 10rem;
+
+  .day {
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+  .transactionList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    li {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      .itemTitle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        .category {
+          color: var(--card-text-color);
+          padding: 0.2rem 0.6rem;
+          border-radius: 2rem;
+        }
+      }
+    }
+  }
+}

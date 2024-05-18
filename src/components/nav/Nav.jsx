@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import c from "./nav.module.scss";
 
 const Nav = () => {
   const location = useLocation();
   const linkMenu = useRef([]);
+  const navRef = useRef();
 
   const [centerVerticalPosition, setVerticalCenterPosition] = useState(0);
   const [activeLinkPosition, setActiveLinkPosition] = useState(0);
@@ -13,21 +14,19 @@ const Nav = () => {
     const matchingElement = linkMenu.current?.find(
       (link) => link.getAttribute("href") === location.pathname
     );
-    setActiveLinkPosition(
+
+    const parentLeft = navRef.current.getBoundingClientRect().left;
+    const childLeft =
       matchingElement.getBoundingClientRect().left +
-        matchingElement.getBoundingClientRect().width / 2
-    );
+      matchingElement.getBoundingClientRect().width / 2;
+
+    setActiveLinkPosition(childLeft - parentLeft);
   }, [linkMenu, location]);
 
   useEffect(() => {
     const updateCenterPosition = () => {
       const middle = window.innerWidth / 2;
-      console.log(middle, activeLinkPosition);
-      if (activeLinkPosition <= middle) {
-        setVerticalCenterPosition(middle - activeLinkPosition);
-      } else {
-        setVerticalCenterPosition(activeLinkPosition - middle);
-      }
+      setVerticalCenterPosition(middle - activeLinkPosition);
     };
 
     updateCenterPosition(); // Initial update
@@ -43,32 +42,56 @@ const Nav = () => {
 
   return (
     <div className={c.navContainer}>
-      <nav className={c.nav} style={{ left: `${centerVerticalPosition}px` }}>
+      <nav
+        className={c.nav}
+        style={{ left: `${centerVerticalPosition}px` }}
+        ref={navRef}
+      >
         <ul>
           <li>
-            <Link to={`/`} ref={(e) => (linkMenu.current[0] = e)}>
+            <NavLink
+              to={`/`}
+              ref={(e) => (linkMenu.current[0] = e)}
+              className={({ isActive }) => (isActive ? c.active : "")}
+            >
               HOME
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={`/calendar`} ref={(e) => (linkMenu.current[1] = e)}>
+            <NavLink
+              to={`/calendar`}
+              ref={(e) => (linkMenu.current[1] = e)}
+              className={({ isActive }) => (isActive ? c.active : "")}
+            >
               CALENDAR
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={`/stats`} ref={(e) => (linkMenu.current[2] = e)}>
+            <NavLink
+              to={`/stats`}
+              ref={(e) => (linkMenu.current[2] = e)}
+              className={({ isActive }) => (isActive ? c.active : "")}
+            >
               STATS
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={`/summary`} ref={(e) => (linkMenu.current[3] = e)}>
+            <NavLink
+              to={`/summary`}
+              ref={(e) => (linkMenu.current[3] = e)}
+              className={({ isActive }) => (isActive ? c.active : "")}
+            >
               SUMMARY
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={`/categories`} ref={(e) => (linkMenu.current[4] = e)}>
+            <NavLink
+              to={`/categories`}
+              ref={(e) => (linkMenu.current[4] = e)}
+              className={({ isActive }) => (isActive ? c.active : "")}
+            >
               CATEGORIES
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
