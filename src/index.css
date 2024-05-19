@@ -22,18 +22,25 @@
   --card-bg-color: #ffffff;
   --card-text-color: #181818;
   --card-secondary-text-color: #3e3e3e;
+  --card-border-color: #e8e8e8;
+
+  --card-cta-bg-color: #181818;
+  --card-cta-text-color: #ffffff;
 
   /* Color */
-  --label-blue: #64aafd;
+  --label-blue: #94c4ff;
   --label-yellow: #fdc964;
   --label-pink: #f1aaa6;
-  --label-red: #d76681;
+  --label-red: #ea7f98;
   --label-teal: #a1e5c8;
   --label-purple: #a1a7e5;
-  --label-darkblue: #2f67ac;
-  /* --label-blue:#64AAFD;
-  --label-blue:#64AAFD;
-  --label-blue:#64AAFD; */
+  --label-lemon: #c4ed89;
+  --label-grey: #d2d2d2;
+  --label-purplepink: #f095d7;
+  --label-lightpurple: #cfdafd;
+  --label-green: #85df9c;
+  --label-darkgrey: #aeaeae;
+
 }
 
 body {

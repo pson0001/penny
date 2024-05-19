@@ -1,31 +1,15 @@
 import moment from "moment";
 import c from "./transactions.module.scss";
+import ExpenseCategories from "../../../components/constant/ExpenseCategories";
+import { getDatabase, ref, remove, set } from "firebase/database";
+
+import Icon from "../../../components/icon/Icon";
+import app from "../../../firebase";
 
 const Transactions = ({ spentItems }) => {
-  const expenseCategories = [
-    { value: "Grocery", label: "Grocery", color: "var(--label-blue)" },
-    {
-      value: "Outside_Eating_or_Order",
-      label: "Eat out",
-      color: "var(--label-yellow)",
-    },
-    { value: "Fun_Stuff", label: "Fun Stuff", color: "var(--label-red)" },
-    { value: "Ez", label: "IMPORTANT MAN", color: "var(--label-teal)" },
-    { value: "Ping", label: "Ping", color: "var(--label-pink)" },
-    // { value: "Car_Payment", label: "Car Payment" },
-    { value: "OC_Land_Tax", label: "OC", color: "var(--label-blue)" },
-    { value: "Mortgage", label: "Mortgage", color: "var(--label-blue)" },
-    { value: "Car_Expense", label: "Wheels", color: "var(--label-blue)" },
-    { value: "Cat", label: "Cat Town", color: "var(--label-teal)" },
-    { value: "Utility", label: "Utility", color: "var(--label-blue)" },
-    { value: "Health", label: "Health", color: "var(--label-blue)" },
-    // { value: "Insurance", label: "Insurance" },
-    { value: "Other", label: "Other", color: "var(--label-blue)" },
-  ];
-
   // Function to get the day of the week from a date string using Moment.js
   const getDayOfWeek = (dateString) => {
-    return moment(dateString).format("dddd"); // "Monday", "Tuesday", etc.
+    return moment(dateString).format("dddd");
   };
 
   // Group transactions by day of the week
@@ -39,11 +23,11 @@ const Transactions = ({ spentItems }) => {
   }, {});
 
   const findLabelByValue = (value) => {
-    const item = expenseCategories.find((item) => item.value === value);
+    const item = ExpenseCategories.find((item) => item.value === value);
     return item ? item.label : null;
   };
   const findColorByValue = (value) => {
-    const item = expenseCategories.find((item) => item.value === value);
+    const item = ExpenseCategories.find((item) => item.value === value);
     return item ? item.color : null;
   };
   // Order the days of the week with Sunday first
@@ -56,6 +40,15 @@ const Transactions = ({ spentItems }) => {
     "Tuesday",
     "Monday",
   ];
+
+  const handleOnDelete = (id) => {
+    const userConfirmed = window.confirm(
+      "Are you sure you want to delete this expense?"
+    );
+    if (userConfirmed) {
+      remove(ref(getDatabase(app), `expenses/${id}`));
+    }
+  };
 
   return (
     <div className={c.transactionContainer}>
@@ -80,7 +73,12 @@ const Transactions = ({ spentItems }) => {
                       </div>
                       <div>{transaction.transaction_item}</div>
                     </div>
-                    <div>${transaction.transaction_amount}</div>
+                    <div className={c.amount}>
+                      ${transaction.transaction_amount}
+                      <button onClick={() => handleOnDelete(transaction.id)}>
+                        <Icon.Trash />
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
