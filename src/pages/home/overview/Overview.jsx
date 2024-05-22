@@ -1,6 +1,6 @@
 import c from "./overview.module.scss";
 
-const Overview = ({ spent, budget }) => {
+const Overview = ({ spent, budget, allSpent }) => {
   return (
     <div className={c.overviewContainer}>
       <div className={c.numberContainer}>

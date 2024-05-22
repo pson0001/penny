@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/Home.jsx";
-import Calendar from "./pages/calendar/Calendar.jsx";
+import Schedule from "./pages/calendar/Schedule.jsx";
 import Stats from "./pages/stats/Stats.jsx";
 import Summary from "./pages/summary/Summary.jsx";
 import Categories from "./pages/categories/Categories.jsx";
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/calendar",
-        element: <Calendar />,
+        element: <Schedule />,
       },
       {
         path: "/stats",

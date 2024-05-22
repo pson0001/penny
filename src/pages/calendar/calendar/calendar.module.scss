@@ -1,0 +1,10 @@
+.calendarContainer {
+  top: 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4rem;
+  .month {
+    grid-column: 3/6;
+  }
+}

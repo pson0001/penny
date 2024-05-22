@@ -1,14 +1,16 @@
 .overviewContainer {
-  background-color: var(--card-bg-color);
-  border-radius: 2rem;
-  padding: 2rem 1.5rem;
-  color: var(--card-text-color);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 2rem;
+  width: 100%;
   .numberContainer {
+    background-color: var(--card-bg-color);
+    border-radius: 2rem;
+    padding: 2rem;
+    color: var(--card-text-color);
     display: flex;
     flex-direction: row;
+    width: 100%;
     .numberItem {
       width: 100%;
       text-align: center;
@@ -22,11 +24,5 @@
         }
       }
     }
-  }
-  .chartContainer {
-    width: 100%;
-    height: 8px;
-    border-radius: 8px;
-    background-color: grey;
   }
 }
