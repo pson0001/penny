@@ -12,9 +12,8 @@ import {
   getYear,
   getDaysInMonth,
 } from "date-fns";
-// import { getMonday } from '../utils'
 import Cell from "../cell/Cell";
-
+import allExpenses from "../../../components/data/allExpenses.js";
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Calendar = ({
@@ -23,7 +22,6 @@ const Calendar = ({
   selectedMonth,
   onSelectedMonthChange,
   today,
-  // numberOfDisplayDays,
 }) => {
   // Display Calendar
   const startDate = startOfMonth(selectedMonth);
@@ -44,14 +42,7 @@ const Calendar = ({
   // All displayed dates
   const nextDay = (day, number) => add(day, { days: number });
 
-  // const isIncludesSameDay = (day1, day2) => {
-  //   for (let i = 0; i < numberOfDisplayDays; i++) {
-  //     if (isSameDay(day1, nextDay(day2, i))) {
-  //       return true;
-  //     }
-  //   }
-  // };
-
+  let allExpensesPerDate = allExpenses();
   return (
     <>
       <div className={c.calendarContainer}>
@@ -87,17 +78,22 @@ const Calendar = ({
             getMonth(selectedMonth),
             date
           );
+          const formatDate = format(new Date(newDate), "yyyy-MM-dd");
 
           return (
             <Cell
               key={date}
               today={isSameDay(newDate, today)}
-              // displayDate={isIncludesSameDay(newDate, selectedDate)}
               onClick={() => {
                 onSelectedDateChange(newDate);
               }}
             >
-              {date}
+              <div>{date}</div>
+              <label>
+                {allExpensesPerDate[formatDate]
+                  ? `$${Math.round(allExpensesPerDate[formatDate])}`
+                  : null}
+              </label>
             </Cell>
           );
         })}

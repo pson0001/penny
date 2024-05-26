@@ -9,6 +9,9 @@ import Categories from "./pages/categories/Categories.jsx";
 import App from "./App.jsx";
 import "./index.css";
 import Error from "./pages/error/Error.jsx";
+import { AuthProvider } from "./components/auth/AuthProvider.jsx";
+import SignIn from "./pages/signIn/SignIn.jsx";
+import ProtectedRoute from "./components/route/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,30 +21,55 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
       },
       {
         path: "/calendar",
-        element: <Schedule />,
+        element: (
+          <ProtectedRoute>
+            <Schedule />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/stats",
-        element: <Stats />,
+        element: (
+          <ProtectedRoute>
+            <Stats />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/summary",
-        element: <Summary />,
+        element: (
+          <ProtectedRoute>
+            <Summary />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/categories",
-        element: <Categories />,
+        element: (
+          <ProtectedRoute>
+            <Categories />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
 ]);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

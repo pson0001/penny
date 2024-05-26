@@ -1,9 +1,16 @@
 .cell {
   border: 1px solid rgba($color: #000000, $alpha: 0.1);
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: center;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  & label {
+    font-size: 0.75rem;
+    color: rgba($color: #ffffff, $alpha: 0.75);
+  }
   &.today {
-    background-color: aquamarine;
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
   }
   &.displayDate {
     background-color: bisque;

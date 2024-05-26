@@ -15,10 +15,10 @@ const Nav = () => {
       (link) => link.getAttribute("href") === location.pathname
     );
 
-    const parentLeft = navRef.current.getBoundingClientRect().left;
+    const parentLeft = navRef.current?.getBoundingClientRect().left;
     const childLeft =
-      matchingElement.getBoundingClientRect().left +
-      matchingElement.getBoundingClientRect().width / 2;
+      matchingElement?.getBoundingClientRect().left +
+      matchingElement?.getBoundingClientRect().width / 2;
 
     setActiveLinkPosition(childLeft - parentLeft);
   }, [linkMenu, location]);

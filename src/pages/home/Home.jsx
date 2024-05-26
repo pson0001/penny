@@ -45,7 +45,6 @@ const Home = () => {
       element.transaction_date.isAfter(moment().startOf("isoWeek"))
     ) {
       allExpenses.push(element);
-      // spent += Math.round(+element.transaction_amount);
     }
   });
 

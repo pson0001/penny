@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { expenseRef } from "./databaseFirebase";
 import { onValue } from "firebase/database";
 import moment from "moment";
