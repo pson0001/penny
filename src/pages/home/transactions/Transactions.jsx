@@ -22,6 +22,19 @@ const Transactions = ({ spentItems }) => {
     return acc;
   }, {});
 
+  // Group transactions by day of the week
+  const groupedTransactionsTotal = spentItems.reduce((acc, transaction) => {
+    const day = getDayOfWeek(transaction.transaction_date);
+    const amount = parseFloat(transaction.transaction_amount);
+
+    if (!acc[day]) {
+      acc[day] = 0;
+    }
+    acc[day] += parseInt(amount);
+
+    return acc;
+  }, {});
+
   const findLabelByValue = (value) => {
     const item = ExpenseCategories.find((item) => item.value === value);
     return item ? item.label : null;
@@ -52,6 +65,12 @@ const Transactions = ({ spentItems }) => {
 
   return (
     <div className={c.transactionContainer}>
+      {/* {orderedDays.reverse().map((day) => (
+        <div>
+          {day.slice(0, 3)}
+          {groupedTransactionsTotal[day]}
+        </div>
+      ))} */}
       {orderedDays.map(
         (day) =>
           groupedTransactions[day] && (
