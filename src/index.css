@@ -23,6 +23,7 @@
   --card-text-color: #181818;
   --card-secondary-text-color: #3e3e3e;
   --card-border-color: #e8e8e8;
+  --card-border-table-color: #e8e8e820;
 
   --card-cta-bg-color: #181818;
   --card-cta-text-color: #ffffff;
@@ -40,7 +41,6 @@
   --label-lightpurple: #cfdafd;
   --label-green: #85df9c;
   --label-darkgrey: #aeaeae;
-
 }
 
 body {

@@ -1,0 +1,15 @@
+.expenseContainer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  .expenseRow {
+    border: 1px solid var(--card-border-table-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    & div {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}

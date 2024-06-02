@@ -13,7 +13,7 @@ import {
   getDaysInMonth,
 } from "date-fns";
 import Cell from "../cell/Cell";
-import allExpenses from "../../../components/data/allExpenses.js";
+import calculateExpensesPerDay from "../../../components/data/calculateExpensesPerDay.js";
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Calendar = ({
@@ -42,7 +42,7 @@ const Calendar = ({
   // All displayed dates
   const nextDay = (day, number) => add(day, { days: number });
 
-  let allExpensesPerDate = allExpenses();
+  let allExpensesPerDate = calculateExpensesPerDay();
   return (
     <>
       <div className={c.calendarContainer}>
