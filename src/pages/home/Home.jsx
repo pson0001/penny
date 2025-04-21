@@ -50,7 +50,7 @@ const Home = () => {
 
   return (
     <PageContainer>
-      <Overview spent={spent} budget={600} />
+      <Overview spent={spent} budget={650} />
       <Transactions spentItems={allExpenses} />
     </PageContainer>
   );
